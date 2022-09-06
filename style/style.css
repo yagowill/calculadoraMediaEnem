@@ -8,6 +8,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html, body {
+    height: 100%;
+}
+
 header, footer {
     background-color: #000;
     color: #ffb86c;
@@ -45,6 +49,11 @@ label, input, .texto {
 
 .container {
     display: flex;
+}
+
+.space {
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .flex-column {
