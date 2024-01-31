@@ -1,46 +1,53 @@
-const btn = document.getElementById('BtnCalc')
+const btn = document.getElementById('BtnCalc');
 
 btn.addEventListener('click', () => {
-    const exibir = document.getElementById('resultadoNota')
+    const exibir = document.getElementById('resultadoNota');
+
     const media = {
         cHumanas: {
-            nota: document.getElementById('CienciasHumanas').value,
-            peso: document.getElementById('PesoCienciasHumanas').value,
-            notaHumanas: function() {return this.nota * this.peso}
+            nota: parseFloat(document.getElementById('CienciasHumanas').value),
+            peso: parseInt(document.getElementById('PesoCienciasHumanas').value),
+            notaHumanas: function () { return this.nota * this.peso; }
         },
         cNatureza: {
-            nota: document.getElementById('CienciasDaNatureza').value,
-            peso:document.getElementById('PesoCienciasDaNatureza').value,
-            notaNatureza: function() {return this.nota * this.peso}
+            nota: parseFloat(document.getElementById('CienciasDaNatureza').value),
+            peso: parseInt(document.getElementById('PesoCienciasDaNatureza').value),
+            notaNatureza: function () { return this.nota * this.peso; }
         },
         linguagens: {
-            nota: document.getElementById('Linguagens').value,
-            peso:document.getElementById('PesoLinguagens').value,
-            notaLinguagens: function() {return this.nota * this.peso}
-
-        }, 
+            nota: parseFloat(document.getElementById('Linguagens').value),
+            peso: parseInt(document.getElementById('PesoLinguagens').value),
+            notaLinguagens: function () { return this.nota * this.peso; }
+        },
         matematica: {
-            nota: document.getElementById('Matematica').value,
-            peso:document.getElementById('PesoMatematica').value,
-            notaMatematica: function() {return this.nota * this.peso}
-
+            nota: parseFloat(document.getElementById('Matematica').value),
+            peso: parseInt(document.getElementById('PesoMatematica').value),
+            notaMatematica: function () { return this.nota * this.peso; }
         },
         redacao: {
-            nota: document.getElementById('Redacao').value,
-            peso:document.getElementById('PesoRedacao').value,
-            notaRedacao: function() {return this.nota * this.peso}
- 
+            nota: parseFloat(document.getElementById('Redacao').value),
+            peso: parseInt(document.getElementById('PesoRedacao').value),
+            notaRedacao: function () { return this.nota * this.peso; }
         }
-    }
+    };
 
     function somanotas() {
-        return (media.cHumanas.notaHumanas() + media.cNatureza.notaNatureza() + media.linguagens.notaLinguagens() + media.matematica.notaMatematica() + media.redacao.notaRedacao())
+        return (
+            media.cHumanas.notaHumanas() +
+            media.cNatureza.notaNatureza() +
+            media.linguagens.notaLinguagens() +
+            media.matematica.notaMatematica() +
+            media.redacao.notaRedacao()
+        );
     }
 
-    const notamedia = somanotas() / 5
+    const notamedia = somanotas() / (
+        media.cHumanas.peso +
+        media.cNatureza.peso +
+        media.linguagens.peso +
+        media.matematica.peso +
+        media.redacao.peso
+    );
 
-    exibir.innerText = notamedia
-
-
-     
-})
+    exibir.innerText = Math.round(notamedia);
+});
